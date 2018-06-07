@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Dabbling in Web</title>
+    <meta name="description" content="Dabbling in Web - adventures in learning to build websites and web apps from the ground up.">
+
+    <!-- CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Lato|Squada+One" rel="stylesheet">   <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"/>            <!-- Bootstrap (CSS) -->
+    <link rel="stylesheet" href="css/tech-blog.css"/>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="main-nav" class="navbar navbar-expand-lg fixed-top">
+        <!--a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a-->
+        <h1 class="h1 logo-text">Dabbling in Web</h1>
+        <!--button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#tom">Tom</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#dick">Dick</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#harry">Harry</a>
+            </li>
+          </ul>
+        </div-->
+    </nav>
+
+    <div id="main-body" class="container">
+        <article>
+            <h2 class=article-title">DigitalOcean Firewall Hijinx</h2>
+            <div class="name-date-line">
+                <span class="author-date-box">
+                    <a class="article-author" href="https://www.cunningdj.com/about">David Cunningham</a> 
+                    <span class="article-date">June 4, 2018</span>
+                </span>
+            </div>
+            <div class="article-body">
+                <p>My blog content for <a href="https://www.cunningdj.com">CunningDJ.com</a> got wiped out a few months ago, which led me to learn an import lesson concerning assumptions in network security and <a href="https://m.do.co/c/b7601a66883e">DigitalOcean</a>.  Luckily, my mistakes only lead to the loss of some articles that I felt good about, rather than some large sum worth of digital information or assets, and I'll take the lesson with me.</p>
+                <p>I made the first version of my blog in late 2016.  It started as a project with which to test and improve my full stack web development skills, and an outlet through which I could start to write again.  My end goal was to build a fully-functioning blog, with mechanisms to easily write and edit articles, from scratch.  It has gone through three major versions so far, with the most recent version having article information stored in <a href="https://www.mongodb.com">MongoDB</a>, with an easy, (what I thought to be) secure web interface to build and edit articles.  It works quite well, and really achieves all of the basic goals I set out for myself, with a clean, polished end-result for readers.</p>
+                <p>However, I would soon find that all was not well in the kingdom.  <a href="https://twitter.com/CunningDJ/status/980843045376716801">As I tweeted on the 2nd of April</a>, after noticing issues with the blog for a week or two with limited time to investigate, I visited my Mongo database to find that some "hackers" (likely employing an automated bot - you'll see why) had gained access to my databases on the host machine, deleted them, and created a small database that asked for a fraction of a bitcoin in exchange for my data back.  This meant that all of my blog content, as well as other analytics I collect primarily for fun, was wiped out.  I did not have any faith that bitcoin wired to the given address would result in the return of my data, or that they had even kept it in some form, and was not going to reward such hostage behavior one way or another.</p>
+                <!-- Tweet link -->
+                <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Apparently when you install <a href="https://twitter.com/MongoDB?ref_src=twsrc%5Etfw">@MongoDB</a> on <a href="https://twitter.com/ubuntu?ref_src=twsrc%5Etfw">@ubuntu</a> <a href="https://twitter.com/digitalocean?ref_src=twsrc%5Etfw">@digitalocean</a>, its ports are by default open to the world?  There goes my blog content. <a href="https://t.co/OonWEyTZ2S">pic.twitter.com/OonWEyTZ2S</a></p>&mdash; David Cunningham (@CunningDJ) <a href="https://twitter.com/CunningDJ/status/980843045376716801?ref_src=twsrc%5Etfw">April 2, 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+                <p>I quickly found that I could link to my remote mongo instance from my laptop without any trouble, and so I turned off the mongod instance until I could solve the problem.  I was shocked, but also kicked myself for the assumption I had made.  <span class="bold">DigitalOcean Droplets (Virtual Private Servers) did not have any default firewalls</span>, which means that anything you're serving, on any port, can be accessed by anyone who taps into it on your public IP, unless you have password protection or some other kind of security measure.  Not only had I assumed that Mongo's default port would be firewall-protected from the public, but given this assumption, I had decided not to set a password on it, thinking that would just be an inconvenience inside what I thought were the cozy firewalls of my VPS.  As a result, the default port linking to my entire website's data was open to the world, where any automated bot that was sniffing IP to IP could connect and automatically rummage around, edit, or delete anything it liked, and insert a token ransom note before exiting.</p>
+                <p>I did some research, and found two options: I could self-install open source <a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-16-04">UFW</a>, or I could use DigitalOcean's <a href="https://www.digitalocean.com/community/tutorials/an-introduction-to-digitalocean-cloud-firewalls">Cloud Firewall</a>.  I went with the latter, which turns out to be a really convenient, effective option, and it saves you the technical difficulties of home-rolling it yourself.  I still intend to learn the ins and outs of firewalls, but it will take a backseat to a long list of other skills I'm working on, since DigitalOcean provides a free option that works well and requires minimal tweaking.</p>
+                <p>The experience was a humbling one.  I've learned a lot about web development in the last two years, but sometimes simple mistakes like that can remind you how much more you have to learn, how wide the world of web development can be, and the value of bringing others with expertise in specific areas onto your projects, rather than taking on every facet and pitfall yourself.</p>
+            </div>
+        </article>
+
+        <article>
+            <h2 class=article-title">ASDF</h2>
+            <div class="name-date-line">
+                <span class="name-date-box">
+                    <a class="article-author" href="https://www.cunningdj.com/about">David Cunningham</a> 
+                    <span class="article-date">Aug 9, 2025</span>
+                </span>
+            </div>
+            <div class="article-body">
+                <p>Filler article.</p>
+            </div>
+        </article>
+    </div>
+
+    <!-- JS (Vendor) -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- JQuery -->
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script> <!-- Bootstrap (JS) -->
+
+    <!-- JS (Custom) -->
+    <script type="text/javascript" src="js/tech-blog.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "dabbling-in-web-blog",
+  "author": "David J. Cunningham",
+  "version": "1.0.0",
+  "description": "Dabbling in Web - adventures in learning to build websites and web apps from the ground up.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "license": "ISC"
+}
