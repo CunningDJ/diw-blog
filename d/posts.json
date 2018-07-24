@@ -1,0 +1,8 @@
+{
+    "digitalocean-firewall-hijinx": {
+        "title": "DigitalOcean Firewall Hijinx",
+        "date": "June 4, 2018 15:00 EST",
+        "author": "David Cunningham",
+        "description": "Difficulties and my solution for a working DigitalOcean firewall."
+    }
+}

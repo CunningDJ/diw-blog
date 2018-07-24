@@ -8,4 +8,4 @@ var navHeight = $mainNav.height();
 var NAV_BODY_MARGIN = 25;
 
 // scrolling body-nav offset
-$mainBody.offset({ top: navHeight + NAV_BODY_MARGIN });
+$mainBody.offset({ top: navHeight + NAV_BODY_MARGIN, bottom: NAV_BODY_MARGIN });
