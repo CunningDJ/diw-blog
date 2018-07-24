@@ -6,6 +6,12 @@ body {
   background-repeat: no-repeat; }
 
 /* Logo */
+a:hover {
+  text-decoration: none; }
+
+/*a:hover {
+    text-decoration: none;
+}*/
 .logo-text {
   font-family: 'Squada One', sans-serif;
   font-size: 52px;
@@ -82,3 +88,10 @@ article > .article-body a {
   box-shadow: 2px 2px black;
   padding: 15px 23px;
   margin: 12px 2px; }
+
+.al-title {
+  color: #222; }
+
+.al-author {
+  font-weight: bold;
+  color: #222; }
