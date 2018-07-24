@@ -9,3 +9,7 @@ var blogUtil = {
 function _minDateString(rawDateString) {
     return (new Date(rawDateString).toDateString());
 }
+
+function _postLinkFromId(postId) {
+    return "/p/" + postId + ".html";
+}
