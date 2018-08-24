@@ -7,7 +7,8 @@ var blogUtil = {
 };
 
 function _minDateString(rawDateString) {
-    return (new Date(rawDateString).toDateString());
+    var d = new Date(rawDateString);
+    return d.toLocaleDateString() + ' ' + d.toLocaleTimeString();
 }
 
 function _postLinkFromId(postId) {
