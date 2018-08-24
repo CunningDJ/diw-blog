@@ -1,7 +1,7 @@
 {
   "digitalocean-firewall-hijinx": {
     "title": "DigitalOcean Firewall Hijinx",
-    "date": "June 4, 2018 15:00 EST",
+    "date": "June 4, 2018 15:00 EDT",
     "authorId": "cunningdj",
     "description": "Difficulties and a solution for a Digital Ocean firewall."
   },
@@ -9,6 +9,6 @@
     "title": "Exploring Google Actions",
     "date": "Thu Aug 23 2018 23:24:39 GMT-0400 (EDT)",
     "authorId": "cunningdj",
-    "description": null
+    "description": "Exploring Google Actions and their potential to bring about a new era of apps." 
   }
 }

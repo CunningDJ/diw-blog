@@ -43,7 +43,9 @@ article {
 
 article > .article-title {
   color: #222;
-  font-family: 'Alfa Slab One', cursive; }
+  font-family: "Oswald", "helvetica", sans-serif;
+  font-size: 40px;
+  font-weight: 600; }
 
 div.name-date-line {
   /* NONE */ }
@@ -87,7 +89,10 @@ article > .article-body a {
   margin: 12px 2px; }
 
 .al-title {
-  color: #222; }
+  color: #222;
+  font-family: "Oswald", "helvetica", sans-serif;
+  font-size: 30px;
+  font-weight: 600; }
 
 .al-author {
   font-weight: bold;

@@ -6,7 +6,9 @@ article {
 
 article > .article-title {
     color: #222;
-    font-family: 'Alfa Slab One', cursive;
+    font-family: $article-title-font-family;
+    font-size: 40px;
+    font-weight: $article-title-weight;
 }
 
 div.name-date-line {

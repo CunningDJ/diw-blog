@@ -28,7 +28,7 @@ gulp.task('sass:minify', ['sass:compile'], function() {
 });
 
 
-gulp.task('sass', ['sass:compile', 'sass:minify']);
+gulp.task('sass', ['sass:minify', 'sass:compile']);
 
 gulp.task('sass:watch', function() {
     gulp.watch(SASS_FILES_RE, ['sass']);
