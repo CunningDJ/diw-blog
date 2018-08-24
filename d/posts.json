@@ -1,8 +1,14 @@
 {
-    "digitalocean-firewall-hijinx": {
-        "title": "DigitalOcean Firewall Hijinx",
-        "date": "June 4, 2018 15:00 EST",
-        "authorId": "cunningdj",
-        "description": "Difficulties and a solution for a Digital Ocean firewall."
-    }
+  "digitalocean-firewall-hijinx": {
+    "title": "DigitalOcean Firewall Hijinx",
+    "date": "June 4, 2018 15:00 EST",
+    "authorId": "cunningdj",
+    "description": "Difficulties and a solution for a Digital Ocean firewall."
+  },
+  "exploring-google-actions": {
+    "title": "Exploring Google Actions",
+    "date": "Thu Aug 23 2018 23:24:39 GMT-0400 (EDT)",
+    "authorId": "cunningdj",
+    "description": null
+  }
 }
