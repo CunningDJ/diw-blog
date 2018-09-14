@@ -21,11 +21,21 @@ search.indexPosts = function() {
 
 search.createButton = function() {
 	// add search button and define behaviour
-	var searchField = $('<input id="searchField" type="text" />');
-	var searchResults = $('<table id="searchResults" />');
+	var searchField = $('<input>')
+						.attr("id", "searchField")
+						.attr("type", "text")
+						.attr("autocomplete", "off");
+	var searchResults = $('<table>').attr("id", "searchResults");
 
 	searchField.keypress(function(event) {
 		var text = $("#searchField").val();
+		var updateKey = event.originalEvent.key;
+		var searchText = text.toLowerCase();
+		if (updateKey === "Backspace") {
+			searchText = searchText.substring(0, searchText.length - 2);
+		} else {
+			searchText = searchText + updateKey.toLowerCase();
+		}
 		var results = [];
 
 		// searching through title and description, 
@@ -33,7 +43,8 @@ search.createButton = function() {
 		// more weightage
 		for(var i = 0; i < search.index.length; i++) {
 			var post = search.index[i];
-			if(post.title.includes(text) || post.description.includes(text)) {
+			if(post.title.toLowerCase().includes(searchText)
+				|| post.description.toLowerCase().includes(searchText)) {
 				results.push(post);
 			}
 		}
@@ -41,12 +52,15 @@ search.createButton = function() {
 		search.populateResults(results);
 	});
 
-	var searchBar = $('<form id="searchBar" />');
+	var searchBar = $('<form>').attr("id", "searchBar");
 	searchBar.css("visibility", "hidden");
 	searchBar.append(searchField);
 	searchBar.append(searchResults);
 	
-	var searchDiv = $('<div id="search">SEARCH</div>');
+	var searchDiv = $('<div>')
+						.text("SEARCH")
+						.attr("id", "search")
+						.css("cursor", "pointer");
 	searchDiv.css("background-color", "green");
 	searchDiv.click(function() {
 		var state = searchBar.css("visibility");
@@ -65,11 +79,12 @@ search.populateResults = function(results) {
 	var searchResults = $('#searchResults');
 	for(var i = 0; i < results.length; i++) {
 		var post = results[i];
-		var link = $('<tr><td>' + post.title + '</td></tr>');
-		link.click(function() {
-			window.location.replace("localhost:8000/p/" + post.key + ".html");
-		});
-		searchResults.append(link);
+		var cell = $('<tr><td>');
+		var link = $('<a>')
+				.attr('href', _postLinkFromId(post.key))
+				.text(post.title);
+		cell.append(link);
+		searchResults.append(cell);
 	}
 };
 
